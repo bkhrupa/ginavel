@@ -15,6 +15,19 @@
                     @endif
 
                     You are logged in!
+
+                    <hr/>
+
+                    <pre>
+features:
+    users
+    products
+    customers
+    orders (new, in progress, delivered, wait payment)
+    orders log (new, in progress, delivered, wait payment, paid)
+    statistics
+
+                    </pre>
                 </div>
             </div>
         </div>
