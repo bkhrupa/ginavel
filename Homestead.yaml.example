@@ -11,9 +11,9 @@ folders:
         to: /home/vagrant/code
 sites:
     -
-        map: local.ginavel
+        map: local.ginery
         to: /home/vagrant/code/public
 databases:
     - homestead
-name: ginavel
-hostname: ginavel
+name: ginery
+hostname: ginery

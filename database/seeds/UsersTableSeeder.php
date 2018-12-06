@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
         $users = [
             [
                 'name' => 'admin',
-                'email' => 'admin@ginavel.com',
+                'email' => 'admin@ginery.com',
                 'password' => bcrypt('secret'),
                 'role' => User::ROLE_ADMIN,
             ]
