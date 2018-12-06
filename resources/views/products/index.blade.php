@@ -14,6 +14,10 @@
                             </div>
                         @endif
 
+                        <div class="btn-group">
+                            <a href="{{ route('product.create') }}" class="btn btn-default">New Product</a>
+                        </div>
+
                         <table class="table">
                             <thead>
                             <tr>

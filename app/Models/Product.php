@@ -21,6 +21,8 @@ class Product extends BaseModel
 {
     use SoftDeletes, Sortable;
 
+    const STATUS_ENABLED = 0;
+
     protected $fillable = [
         'name',
         'price',

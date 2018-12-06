@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->integer('price')->default(0);
             $table->text('description')->nullable();
-            $table->softDeletes();
+            $table->tinyInteger('status')->default(\App\Models\Product::STATUS_ENABLED);
             $table->timestamps();
         });
     }
