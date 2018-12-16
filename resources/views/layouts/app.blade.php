@@ -38,6 +38,7 @@
                     <ul class="nav navbar-nav">
                         @auth
                             <li><a href="{{ route('product.index') }}">Products</a></li>
+                            <li><a href="{{ route('client.index') }}">Clients</a></li>
                         @endauth
                     </ul>
 
@@ -77,6 +78,6 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>
