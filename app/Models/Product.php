@@ -24,6 +24,11 @@ class Product extends BaseModel
     const STATUS_DISABLE = 0;
     const STATUS_ENABLED = 1;
 
+    static $statuses = [
+        self::STATUS_DISABLE => 'Disable',
+        self::STATUS_ENABLED => 'Enable',
+    ];
+
     protected $attributes = [
         'status' => self::STATUS_ENABLED,
     ];

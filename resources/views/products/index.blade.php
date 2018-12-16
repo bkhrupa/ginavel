@@ -24,6 +24,7 @@
                                 <th>@sortablelink('id', 'Id')</th>
                                 <th>@sortablelink('name')</th>
                                 <th>@sortablelink('price')</th>
+                                <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -32,6 +33,9 @@
                                     <td>{{ $product->id }}</td>
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->price }}</td>
+                                    <td>
+                                        <a href="{{ route('product.show', $product->id) }}">Show</a>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
