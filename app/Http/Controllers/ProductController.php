@@ -87,9 +87,13 @@ class ProductController extends Controller
      *
      * @param  \App\Models\Product $product
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        return redirect(route('product.index'))
+            ->with(['status' => 'Product successful deleted.']);
     }
 }

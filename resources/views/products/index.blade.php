@@ -34,8 +34,17 @@
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->price }}</td>
                                     <td>
-                                        <a href="{{ route('product.show', $product->id) }}">Show</a>
-                                        <a href="{{ route('product.edit', $product->id) }}">Edit</a>
+                                        <div class="btn-group">
+                                            <a class="btn btn-link" href="{{ route('product.show', $product->id) }}">Show</a>
+                                            <a class="btn btn-link" href="{{ route('product.edit', $product->id) }}">Edit</a>
+                                            <form method="POST" style="display: inline;" action="{{ route('product.destroy', $product->id) }}">
+                                                {{ csrf_field() }}
+                                                <input name="_method" type="hidden" value="DELETE">
+                                                <button type="submit" class="btn btn-link">
+                                                    Delete
+                                                </button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
