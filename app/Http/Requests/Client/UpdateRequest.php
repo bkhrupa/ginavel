@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Client;
 
-use App\Models\Product;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class ProductUpdateRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,25 +24,26 @@ class ProductUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        /** @var \App\Models\Product $product */
-        $product = $this->route('product');
+        /** @var \App\Models\Client $client */
+        $client = $this->route('client');
 
         return [
             'name' => [
                 'required',
                 'max:191',
-                Rule::unique('products', 'name')->ignore($product->id),
+                Rule::unique('clients', 'name')->ignore($client->id),
             ],
-            'price' => [
-                'required',
-                'integer'
+            // TODO phone validation
+            'phone' => [
+
             ],
-            'description' => [
+            'email' => [
+                'sometimes',
+                'nullable',
+                'email'
+            ],
+            'note' => [
                 'max:2048'
-            ],
-            'status' => [
-                'required',
-                Rule::in([Product::STATUS_DISABLE, Product::STATUS_ENABLED]),
             ],
         ];
     }

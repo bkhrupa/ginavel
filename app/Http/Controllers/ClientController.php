@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ClientCreateRequest;
+use App\Http\Requests\Client\CreateRequest;
+use App\Http\Requests\Client\UpdateRequest;
 use App\Models\Client;
-use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
@@ -33,10 +33,10 @@ class ClientController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param ClientCreateRequest $request
+     * @param \App\Http\Requests\Client\CreateRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(ClientCreateRequest $request)
+    public function store(CreateRequest $request)
     {
         Client::query()->create($request->except(['_token']));
 
@@ -47,46 +47,50 @@ class ClientController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Client $client
      * @return \Illuminate\Http\Response
      */
     public function show(Client $client)
     {
-        //
+        return view('clients.show', $client);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Client $client
      * @return \Illuminate\Http\Response
      */
     public function edit(Client $client)
     {
-        //
+        return view('clients.edit', $client);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Client $client
+     * @param \App\Http\Requests\Client\UpdateRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(Client $client, UpdateRequest $request)
     {
-        //
+        $client->update($request->except(['_token', '_method']));
+
+        return redirect(route('client.edit', $client->id))
+            ->with(['status' => 'Client successful updated.']);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Client $client
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Client $client)
     {
-//        $client->delete();
+        $client->delete();
 
         return redirect(route('client.index'))
             ->with(['status' => 'Client successful deleted.']);

@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">New Client</div>
+                    <div class="panel-heading">Edit Client - {{ $name }}</div>
 
                     <div class="panel-body">
                         @if (session('status'))
@@ -15,21 +15,22 @@
                             </div>
                         @endif
 
-                        <form class="form-horizontal" method="POST" action="{{ route('client.store') }}">
+                        <form class="form-horizontal" method="POST" action="{{ route('client.update', $id) }}">
                             {{ csrf_field() }}
+                            <input name="_method" type="hidden" value="PUT">
 
-                            @include('partials.form.text', ['name' => 'name', 'label' => 'Name', 'value' => null])
+                            @include('partials.form.text', ['name' => 'name', 'label' => 'Name', 'value' => $name])
 
-                            @include('partials.form.text', ['name' => 'email', 'label' => 'Email', 'value' => null])
+                            @include('partials.form.text', ['name' => 'email', 'label' => 'Email', 'value' => $email])
 
-                            @include('partials.form.text', ['name' => 'phone', 'label' => 'Phone', 'value' => null])
+                            @include('partials.form.text', ['name' => 'phone', 'label' => 'Phone', 'value' => $phone])
 
-                            @include('partials.form.textarea', ['name' => 'note', 'label' => 'Note', 'value' => null])
+                            @include('partials.form.textarea', ['name' => 'note', 'label' => 'Note', 'value' => $note])
 
                             <div class="form-group">
                                 <div class="col-md-8 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">
-                                        Create
+                                        Update
                                     </button>
 
                                     <a class="btn btn-link" href="{{ route('client.index') }}">
