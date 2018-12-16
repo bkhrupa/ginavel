@@ -5,12 +5,6 @@
         <div class="panel-heading">Clients</div>
 
         <div class="panel-body">
-            @if (session('status'))
-                <div class="alert alert-success">
-                    {{ session('status') }}
-                </div>
-            @endif
-
             <div class="btn-group">
                 <a href="{{ route('client.create') }}" class="btn btn-default">New Client</a>
             </div>

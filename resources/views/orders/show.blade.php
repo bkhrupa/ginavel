@@ -6,12 +6,6 @@
         <div class="panel-heading">Oreder #{{ $order->id }}</div>
 
         <div class="panel-body">
-            @if (session('status'))
-                <div class="alert alert-success">
-                    {{ session('status') }}
-                </div>
-            @endif
-
             <div class="row">
                 <div class="col-md-4">#</div>
                 <div class="col-md-6">{{ $order->id }}</div>

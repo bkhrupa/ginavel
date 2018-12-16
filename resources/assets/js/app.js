@@ -7,6 +7,8 @@
 
 require('./bootstrap');
 
+import Datepicker from 'vuejs-datepicker';
+
 window.Vue = require('vue');
 
 /**
@@ -20,5 +22,8 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 Vue.directive('confirm-delete', require('./directives/ConfirmDelete.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    components: {
+        Datepicker
+    }
 });

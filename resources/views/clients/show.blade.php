@@ -5,12 +5,6 @@
         <div class="panel-heading">Client - {{ $name }}</div>
 
         <div class="panel-body">
-            @if (session('status'))
-                <div class="alert alert-success">
-                    {{ session('status') }}
-                </div>
-            @endif
-
             <div class="row">
                 <div class="col-md-4">Name</div>
                 <div class="col-md-6">{{ $name }}</div>

@@ -6,12 +6,6 @@
         <div class="panel-heading">Edit Client - {{ $name }}</div>
 
         <div class="panel-body">
-            @if (session('status'))
-                <div class="alert alert-success">
-                    {{ session('status') }}
-                </div>
-            @endif
-
             <form class="form-horizontal" method="POST" action="{{ route('client.update', $id) }}">
                 {{ csrf_field() }}
                 <input name="_method" type="hidden" value="PUT">
