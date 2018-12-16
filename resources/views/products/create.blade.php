@@ -18,26 +18,25 @@
                         <form class="form-horizontal" method="POST" action="{{ route('product.store') }}">
                             {{ csrf_field() }}
 
-                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label for="name" class="col-md-4 control-label">Product Name</label>
+                            @include('partials.form.text', ['name' => 'name', 'label' => 'Product Name', 'value' => null])
 
-                                <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control" name="name"
-                                           value="{{ old('name') }}" autofocus>
+                            @include('partials.form.integer', ['name' => 'price', 'label' => 'Price', 'value' => null])
 
-                                    @if ($errors->has('name'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
+                            @include('partials.form.textarea', ['name' => 'description', 'label' => 'Description', 'value' => null])
 
-                            <ul>
-                                <li>price</li>
-                                <li>description</li>
-                                <li>status</li>
-                            </ul>
+                            @include(
+                            'partials.form.select',
+                            [
+                                'name' => 'status',
+                                'label' => 'Status',
+                                'value' => null,
+                                'options' => [
+                                    App\Models\Product::STATUS_ENABLED => 'Enabled',
+                                    App\Models\Product::STATUS_DISABLE => 'Disable',
+                                ]
+                            ]
+                            )
+
                             <div class="form-group">
                                 <div class="col-md-8 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">

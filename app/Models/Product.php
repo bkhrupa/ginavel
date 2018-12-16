@@ -19,9 +19,14 @@ use Kyslik\ColumnSortable\Sortable;
  */
 class Product extends BaseModel
 {
-    use SoftDeletes, Sortable;
+    use Sortable;
 
-    const STATUS_ENABLED = 0;
+    const STATUS_DISABLE = 0;
+    const STATUS_ENABLED = 1;
+
+    protected $attributes = [
+        'status' => self::STATUS_ENABLED,
+    ];
 
     protected $fillable = [
         'name',
