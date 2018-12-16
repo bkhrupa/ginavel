@@ -48,7 +48,7 @@
                                         </a>
                                     </td>
                                     <td>{{ $order->statusName }}</td>
-                                    <td>{{ $order->orderProducts->sum(function ($os) {return $os->sum;}) }}</td>
+                                    <td>{{ $order->orderProducts->sum(function ($op) {return $op->sum;}) }}</td>
                                 </tr>
                             @endforeach
                             </tbody>

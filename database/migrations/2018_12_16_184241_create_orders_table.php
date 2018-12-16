@@ -20,6 +20,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedInteger('client_id')->index();
             $table->date('due_date');
             $table->smallInteger('status')->default(Order::STATUS_NEW);
+            $table->text('note')->nullable();
             $table->timestamps();
         });
 

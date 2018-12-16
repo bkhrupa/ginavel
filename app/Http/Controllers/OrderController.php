@@ -51,7 +51,9 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        $order = $order->load(['creator', 'client', 'orderProducts', 'orderProducts.product']);
+
+        return view('orders.show', ['order' => $order]);
     }
 
     /**
@@ -80,11 +82,15 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Order $order
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Order $order)
     {
-        //
+        $order->delete();
+
+        return redirect(route('order.index'))
+            ->with(['status' => 'Order successful deleted.']);
     }
 }

@@ -15,5 +15,6 @@ $factory->define(App\Models\Order::class, function (Faker $faker) {
         'client_id' => $client->id,
         'due_date' => Carbon::now()->addDays(rand(-5, 5)),
         'status' => array_random(array_keys(Order::$statuses)),
+        'note' => $faker->paragraph,
     ];
 });

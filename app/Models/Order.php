@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Observers\OrderObserver;
 use Kyslik\ColumnSortable\Sortable;
 
 class Order extends BaseModel
@@ -27,6 +28,7 @@ class Order extends BaseModel
         'client_id',
         'due_date',
         'status',
+        'note',
     ];
 
     protected $casts = [
@@ -40,9 +42,21 @@ class Order extends BaseModel
         'status',
     ];
 
+    public static function boot()
+    {
+        parent::boot();
+
+        self::observe(OrderObserver::class);
+    }
+
     public function client()
     {
         return $this->belongsTo(Client::class);
+    }
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
     }
 
     public function orderProducts()

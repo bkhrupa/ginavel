@@ -14,6 +14,11 @@ class ProductsSeeder extends Seeder
     {
         $products = [
             [
+                'name' => 'Подарункова тара',
+                'price' => 10,
+                'description' => 'Ціна за одиницію тари',
+            ],
+            [
                 'name' => 'Absinthe',
                 'price' => 250,
                 'description' => '72 градуси',
