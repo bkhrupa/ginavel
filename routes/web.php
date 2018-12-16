@@ -25,6 +25,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
 
+    Route::group(['middleware' => 'can:admin'], function () {
+        Route::resource('user', 'UserController');
+    });
+
     Route::resource('product', 'ProductController');
     Route::resource('client', 'ClientController');
     Route::resource('order', 'OrderController');

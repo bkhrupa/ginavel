@@ -9,19 +9,24 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
+use Kyslik\ColumnSortable\Sortable;
 
 /**
  * Class User
  * @package App\Models
  *
  * @property int id
+ * @property string name
+ * @property string email
+ * @property string password
+ * @property string role
  */
 class User extends BaseModel implements
     AuthenticatableContract,
     AuthorizableContract,
     CanResetPasswordContract
 {
-    use Notifiable, Authenticatable, Authorizable, CanResetPassword;
+    use Notifiable, Authenticatable, Authorizable, CanResetPassword, Sortable;
 
     const ROLE_ADMIN = 'admin';
     const ROLE_MANAGER = 'manager';
@@ -53,5 +58,11 @@ class User extends BaseModel implements
     protected $hidden = [
         'password',
         'remember_token',
+    ];
+
+    public $sortable = [
+        'id',
+        'name',
+        'role',
     ];
 }
