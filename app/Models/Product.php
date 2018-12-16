@@ -37,6 +37,7 @@ class Product extends BaseModel
         'name',
         'price',
         'description',
+        'status',
     ];
 
     protected $casts = [

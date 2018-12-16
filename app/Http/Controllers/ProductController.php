@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductCreateRequest;
+use App\Http\Requests\ProductUpdateRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -47,7 +48,7 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\models\Product $product
+     * @param  \App\Models\Product $product
      * @return \Illuminate\Http\Response
      */
     public function show(Product $product)
@@ -58,30 +59,33 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Product $product
+     * @param  \App\Models\Product $product
      * @return \Illuminate\Http\Response
      */
     public function edit(Product $product)
     {
-        //
+        return view('products.edit', $product);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \App\Product $product
+     * @param  \App\Models\Product $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Product $product, ProductUpdateRequest $request)
     {
-        //
+        $product->update($request->except(['_token', '_method']));
+
+        return redirect(route('product.edit', $product->id))
+            ->with(['status' => 'Product successful updated.']);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Product $product
+     * @param  \App\Models\Product $product
      * @return \Illuminate\Http\Response
      */
     public function destroy(Product $product)

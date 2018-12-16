@@ -35,6 +35,7 @@
                                     <td>{{ $product->price }}</td>
                                     <td>
                                         <a href="{{ route('product.show', $product->id) }}">Show</a>
+                                        <a href="{{ route('product.edit', $product->id) }}">Edit</a>
                                     </td>
                                 </tr>
                             @endforeach
