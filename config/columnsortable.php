@@ -106,7 +106,7 @@ return [
     use the first defined sortable column (Model::$sortable) as default
     also applies if sorting parameters are invalid for example: 'sort' => 'name', 'direction' => ''
      */
-    'default_first_column'          => false,
+    'default_first_column'          => true,
 
     /*
     join type: join vs leftJoin (default leftJoin)

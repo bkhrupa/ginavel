@@ -10,6 +10,12 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * Class User
+ * @package App\Models
+ *
+ * @property int id
+ */
 class User extends BaseModel implements
     AuthenticatableContract,
     AuthorizableContract,

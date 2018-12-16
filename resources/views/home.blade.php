@@ -1,36 +1,70 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Dashboard</div>
 
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                    <div class="panel-body">
+                        @if (session('status'))
+                            <div class="alert alert-success">
+                                {{ session('status') }}
+                            </div>
+                        @endif
 
-                    You are logged in!
+                        You are logged in!
 
-                    <hr/>
+                        <hr/>
+                        <h3>TODO Features</h3>
+                        <h4>Users</h4>
+                            <ul>
+                                <li><del>auth</del></li>
+                                <li>base crud</li>
+                                <li>roles</li>
+                                <li>policies access</li>
+                            </ul>
 
-                    <pre>
-features:
-    users
-    products
-    customers
-    orders (new, in progress, delivered, wait payment)
-    orders log (new, in progress, delivered, wait payment, paid)
-    statistics
+                        <h4>Products</h4>
+                        <ul>
+                            <li>
+                                <del>base crud</del>
+                            </li>
+                            <li>prices history</li>
+                            <li>photo</li>
+                            <li>photos gallery</li>
+                        </ul>
 
-                    </pre>
+                        <h4>Customers</h4>
+                            <ul>
+                                <li>
+                                    <del>base crud</del>
+                                </li>
+                                <li>statistic</li>
+                                <li>ping functional</li>
+                                <li>allow login</li>
+                                <li>allow create orders</li>
+                            </ul>
+
+                        <h4>Orders</h4>
+                            <ul>
+                                <li>base crud</li>
+                                <li>statuses - new, in progress, delivered, wait payment, done</li>
+                                <li>orders log</li>
+                            </ul>
+
+
+                        <h4>Statistics</h4>
+                            <ul></ul>
+
+                        <h4>Pages <small>Without auth</small></h4>
+                            <ul>Products Price</ul>
+                            <ul>Products Photos</ul>
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

@@ -16,20 +16,41 @@ class ProductsSeeder extends Seeder
             [
                 'name' => 'Absinthe',
                 'price' => 250,
-                'description' => null,
+                'description' => '72 градуси',
             ],
             [
                 'name' => 'Gin',
-                'price' => 180,
+                'price' => 220,
                 'description' => null,
+            ],
+            [
+                'name' => 'Becher',
+                'price' => 160,
+                'description' => null,
+            ],[
+                'name' => 'Мятний спотикач',
+                'price' => 160,
+                'description' => '45 градусів',
+            ],[
+                'name' => 'Хренівка *',
+                'price' => 160,
+                'description' => null,
+            ],[
+                'name' => 'Rum',
+                'price' => 250,
+                'description' => '40 градусів',
+            ],[
+                'name' => 'Spirit',
+                'price' => 95,
+                'description' => null,
+                'status' => Product::STATUS_DISABLE
+
             ],
         ];
 
         foreach ($products as $product) {
-            factory(Product::class)->create($product);
+            Product::query()->firstOrCreate($product);
 
         }
-
-        factory(Product::class)->times(20)->create();
     }
 }

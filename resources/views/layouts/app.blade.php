@@ -37,6 +37,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         @auth
+                            <li><a href="{{ route('order.index') }}">Orders</a></li>
                             <li><a href="{{ route('product.index') }}">Products</a></li>
                             <li><a href="{{ route('client.index') }}">Clients</a></li>
                         @endauth
