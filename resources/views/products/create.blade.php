@@ -6,12 +6,6 @@
         <div class="panel-heading">New Product</div>
 
         <div class="panel-body">
-            @if (session('status'))
-                <div class="alert alert-success">
-                    {{ session('status') }}
-                </div>
-            @endif
-
             <form class="form-horizontal" method="POST" action="{{ route('product.store') }}">
                 {{ csrf_field() }}
 

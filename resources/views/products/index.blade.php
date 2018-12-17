@@ -5,12 +5,6 @@
         <div class="panel-heading">Products</div>
 
         <div class="panel-body">
-            @if (session('status'))
-                <div class="alert alert-success">
-                    {{ session('status') }}
-                </div>
-            @endif
-
             <div class="btn-group">
                 <a href="{{ route('product.create') }}" class="btn btn-default">New Product</a>
             </div>
