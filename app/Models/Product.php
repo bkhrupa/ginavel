@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Builder ;
 use Kyslik\ColumnSortable\Sortable;
 
 /**
@@ -16,6 +16,8 @@ use Kyslik\ColumnSortable\Sortable;
  * @property \Carbon\Carbon deleted_at
  * @property \Carbon\Carbon created_at
  * @property \Carbon\Carbon updated_at
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder  enabled()
  */
 class Product extends BaseModel
 {
@@ -49,4 +51,9 @@ class Product extends BaseModel
         'name',
         'price',
     ];
+
+    public function scopeEnabled(Builder $builder)
+    {
+        return $builder->where('status', self::STATUS_ENABLED);
+    }
 }

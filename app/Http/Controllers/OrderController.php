@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Order\CreateRequest;
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -30,7 +31,9 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('orders.create');
+        $products = Product::query()->enabled()->get();
+
+        return view('orders.create', ['products' => $products]);
     }
 
     /**

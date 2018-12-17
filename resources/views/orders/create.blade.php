@@ -26,6 +26,19 @@
 
                 @include('partials.form.textarea', ['name' => 'note', 'label' => 'Note', 'value' => null])
 
+                <h4 class="text-center">Enter products quantity</h4>
+
+                @foreach($products as $product)
+                    @include(
+                    'partials.form.product-quantity',
+                     [
+                         'label' => $product->name,
+                         'value' => null,
+                         'id' => $product->id,
+                         'price' => $product->price
+                     ]
+                     )
+                @endforeach
 
                 <div class="form-group">
                     <div class="col-md-8 col-md-offset-4">

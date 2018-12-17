@@ -37,6 +37,14 @@ class CreateRequest extends FormRequest
             'note' => [
                 'max:2048'
             ],
+            'products.*.id' => [
+                Rule::exists('products', 'id')
+            ],
+            'products.*.quantity' => [
+                'sometimes',
+                'nullable',
+                'numeric'
+            ],
         ];
     }
 
