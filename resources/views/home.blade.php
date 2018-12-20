@@ -37,9 +37,9 @@
 
             <h4>Orders</h4>
                 <ul>
-                    <li>base crud</li>
+                    <li><del>base crud</del></li>
                     <li>statuses - new, in progress, delivered, wait payment, done</li>
-                    <li>orders log</li>
+                    <li>orders log by products</li>
                 </ul>
 
 

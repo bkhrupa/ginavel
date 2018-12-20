@@ -92,6 +92,9 @@
                     <a class="btn btn-default" href="{{ route('order.index') }}">
                         Back
                     </a>
+                    <a class="btn btn-default" href="{{ route('order.edit', $order->id) }}">
+                        Edit
+                    </a>
                     <form method="POST" style="display: inline;" action="{{ route('order.destroy', $order->id) }}">
                         {{ csrf_field() }}
                         <input name="_method" type="hidden" value="DELETE">

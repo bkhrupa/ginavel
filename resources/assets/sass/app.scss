@@ -10,3 +10,14 @@
 
 // Font Awesome
 @import "node_modules/font-awesome/scss/font-awesome.scss";
+
+.table .btn-group {
+  white-space: nowrap;
+  .btn {
+    display: inline-block;
+    float: none;
+  }
+  .btn + .btn {
+    margin-left: -5px;
+  }
+}

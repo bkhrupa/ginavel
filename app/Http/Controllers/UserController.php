@@ -26,7 +26,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return redirect(route('user.index'))
+            ->with(['error' => 'Not implemented ;)']);
     }
 
     /**
@@ -37,7 +38,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect(route('user.index'))
+            ->with(['error' => 'Not implemented ;)']);
     }
 
     /**
@@ -48,7 +50,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        return redirect(route('user.index'))
+            ->with(['error' => 'Not implemented ;)']);
     }
 
     /**
@@ -59,7 +62,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        return redirect(route('user.index'))
+            ->with(['error' => 'Not implemented ;)']);
     }
 
     /**

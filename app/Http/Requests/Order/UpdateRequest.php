@@ -2,12 +2,13 @@
 
 namespace App\Http\Requests\Order;
 
+use App\Models\Order;
 use App\Models\Product;
 use App\Rules\ProductsQuantityAtLeastOneRequired;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class CreateRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -34,6 +35,10 @@ class CreateRequest extends FormRequest
             'client_id' => [
                 'required',
                 'exists:clients,id'
+            ],
+            'status' => [
+                'required',
+                Rule::in(array_keys(Order::$statuses))
             ],
             'note' => [
                 'max:2048'

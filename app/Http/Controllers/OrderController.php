@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Order\CreateRequest;
+use App\Http\Requests\Order\UpdateRequest;
 use App\Models\Order;
+use App\Models\OrderProduct;
 use App\Models\Product;
-use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -31,7 +32,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        $products = Product::query()->enabled()->get();
+        $products = Product::query()->get();
 
         return view('orders.create', ['products' => $products]);
     }
@@ -39,18 +40,41 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(CreateRequest $request)
     {
-        dd($request->all());
+        $orderData = array_merge(
+            $request->except(['_token', 'products']),
+            ['created_by' => $request->user()->id]
+        );
+
+        $order = Order::query()->create($orderData);
+
+        foreach ($request->get('products') as $orderProductData) {
+            if ($quantity = $orderProductData['quantity']) {
+                $product = Product::query()->find($orderProductData['id']);
+
+                OrderProduct::query()->create([
+                        'order_id' => $order->id,
+                        'product_id' => $product->id,
+                        'quantity' => $quantity,
+                        'price' => $product->price,
+                        'sum' => ($product->price * $quantity),
+                    ]
+                );
+            }
+        }
+
+        return redirect(route('order.show', $order->id))
+            ->with(['status' => 'Order successful created.']);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Order $order
      * @return \Illuminate\Http\Response
      */
     public function show(Order $order)
@@ -63,24 +87,57 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Order $order
      * @return \Illuminate\Http\Response
      */
     public function edit(Order $order)
     {
-        //
+        $order->load('orderProducts');
+        $products = Product::query()->get();
+
+        return view('orders.edit', ['order' => $order, 'products' => $products]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Order  $order
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Models\Order $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(UpdateRequest $request, Order $order)
     {
-        //
+        $orderData = array_merge(
+            $request->except(['_token', '_method', 'products']),
+            ['created_by' => $request->user()->id]
+        );
+
+        $order::query()->update($orderData);
+
+        foreach ($request->get('products') as $orderProductData) {
+            $product = Product::query()->find($orderProductData['id']);
+
+            if ($quantity = $orderProductData['quantity']) {
+                OrderProduct::query()->updateOrCreate([
+                    'order_id' => $order->id,
+                    'product_id' => $product->id,
+                ], [
+                    'quantity' => $quantity,
+                    'price' => $product->price,
+                    'sum' => ($product->price * $quantity),
+                ]);
+            } else {
+                OrderProduct::query()
+                    ->where([
+                        'order_id' => $order->id,
+                        'product_id' => $product->id,
+                    ])
+                    ->delete();
+            }
+        }
+
+        return redirect(route('order.show', $order->id))
+            ->with(['status' => 'Order successful updated.']);
     }
 
     /**

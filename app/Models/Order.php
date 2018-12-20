@@ -5,6 +5,21 @@ namespace App\Models;
 use App\Models\Observers\OrderObserver;
 use Kyslik\ColumnSortable\Sortable;
 
+/**
+ * Class Order
+ * @package App\Models
+ *
+ * @property int $id
+ * @property int $created_by
+ * @property int $client_id
+ * @property \Carbon\Carbon $due_date
+ * @property int $status
+ * @property string $note
+ * @property \App\Models\Client $client
+ * @property \App\Models\User $creator
+ * @property \Illuminate\Support\Collection|\App\Models\OrderProduct[] $orderProducts
+ * @property-read string $statusName
+ */
 class Order extends BaseModel
 {
     use Sortable;

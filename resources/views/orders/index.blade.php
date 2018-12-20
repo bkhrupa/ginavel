@@ -12,17 +12,17 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th>@sortablelink('id')</th>
+                    <th class="hidden-xs">@sortablelink('id')</th>
                     <th>@sortablelink('due_date')</th>
                     <th>@sortablelink('client.name', 'client')</th>
                     <th>@sortablelink('status')</th>
-                    <th>Sum</th>
+                    <th class="hidden-xs">Sum</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach ($orders as $order)
                     <tr>
-                        <td><a href="{{ route('order.show', $order->id) }}">{{ $order->id }}</a></td>
+                        <td class="hidden-xs"><a href="{{ route('order.show', $order->id) }}">{{ $order->id }}</a></td>
                         <td>
                             <a href="{{ route('order.show', $order->id) }}">
                             {{ $order->due_date->toDateString() }}
@@ -39,7 +39,7 @@
                             </a>
                         </td>
                         <td>{{ $order->statusName }}</td>
-                        <td>{{ $order->orderProducts->sum(function ($op) {return $op->sum;}) }}</td>
+                        <td class="hidden-xs">{{ $order->orderProducts->sum(function ($op) {return $op->sum;}) }}</td>
                     </tr>
                 @endforeach
                 </tbody>

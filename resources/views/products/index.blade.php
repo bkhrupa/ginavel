@@ -12,7 +12,7 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th>@sortablelink('id', 'Id')</th>
+                    <th class="hidden-xs">@sortablelink('id', 'Id')</th>
                     <th>@sortablelink('name')</th>
                     <th>@sortablelink('price')</th>
                     <th>Actions</th>
@@ -21,22 +21,14 @@
                 <tbody>
                 @foreach ($products as $product)
                     <tr>
-                        <td>{{ $product->id }}</td>
-                        <td>{{ $product->name }}</td>
-                        <td>{{ $product->price }}</td>
+                        <td class="hidden-xs">{{ $product->id }}</td>
                         <td>
-                            <div class="btn-group">
-                                <a class="btn btn-link" href="{{ route('product.show', $product->id) }}">Show</a>
-                                <a class="btn btn-link" href="{{ route('product.edit', $product->id) }}">Edit</a>
-                                <form method="POST" style="display: inline;" action="{{ route('product.destroy', $product->id) }}">
-                                    {{ csrf_field() }}
-                                    <input name="_method" type="hidden" value="DELETE">
-                                    <button type="submit" class="btn btn-link" v-confirm-delete>
-                                        Delete
-                                    </button>
-                                </form>
-                            </div>
+                            <a title="Show" href="{{ route('product.show', $product->id) }}">
+                                {{ $product->name }}
+                            </a>
                         </td>
+                        <td>{{ $product->price }}</td>
+                        <td>@include('partials.btns-ed', ['model' => $product])</td>
                     </tr>
                 @endforeach
                 </tbody>
