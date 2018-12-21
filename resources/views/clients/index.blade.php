@@ -23,12 +23,18 @@
                     <tr>
                         <td>{{ $client->id }}</td>
                         <td>{{ $client->name }}</td>
-                        <td>{{ $client->phone }}</td>
+                        <td>
+                            @if($client->phone)
+                                {{ $client->phone }}
+                                <a href="tel:{{ $client->phone }}"><i class="fa fa-phone"></i></a>
+                            @endif
+                        </td>
                         <td>
                             <div class="btn-group">
                                 <a class="btn btn-link" href="{{ route('client.show', $client->id) }}">Show</a>
                                 <a class="btn btn-link" href="{{ route('client.edit', $client->id) }}">Edit</a>
-                                <form method="POST" style="display: inline;" action="{{ route('client.destroy', $client->id) }}">
+                                <form method="POST" style="display: inline;"
+                                      action="{{ route('client.destroy', $client->id) }}">
                                     {{ csrf_field() }}
                                     <input name="_method" type="hidden" value="DELETE">
                                     <button type="submit" class="btn btn-link" v-confirm-delete>
