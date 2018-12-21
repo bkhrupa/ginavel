@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Filters\OrderFilter;
 use App\Http\Requests\Order\CreateRequest;
 use App\Http\Requests\Order\UpdateRequest;
 use App\Models\Order;
@@ -13,12 +14,14 @@ class OrderController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param OrderFilter $filter
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(OrderFilter $filter)
     {
         $orders = Order::query()
             ->with(['client', 'orderProducts'])
+            ->filter($filter)
             ->sortable()
             ->paginate();
 

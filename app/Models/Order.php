@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
+use App\Filters\SomeFilter;
 use App\Models\Observers\OrderObserver;
+use Illuminate\Database\Eloquent\Builder;
 use Kyslik\ColumnSortable\Sortable;
+use Kyslik\LaravelFilterable\Filterable;
 
 /**
  * Class Order
@@ -22,7 +25,7 @@ use Kyslik\ColumnSortable\Sortable;
  */
 class Order extends BaseModel
 {
-    use Sortable;
+    use Sortable, Filterable;
 
     const STATUS_NEW = 0;
     const STATUS_IN_PROGRESS = 1;
@@ -52,7 +55,6 @@ class Order extends BaseModel
 
     public $sortable = [
         'due_date',
-        'id',
         'client.name',
         'status',
     ];
