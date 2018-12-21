@@ -6,6 +6,41 @@
 
         <div class="panel-body">
 
+            <h4>Orders (New, In Progress)</h4>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Due Date</th>
+                    <th>Client</th>
+                    <th class="hidden-xs">Status</th>
+                    <th class="hidden-xs">Sum</th>
+                </tr>
+                </thead>
+                <tbody>
+            @foreach ($ordersList as $order)
+                <tr>
+                    <td>
+                        <a href="{{ route('order.show', $order->id) }}">
+                            {{ $order->id }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ route('order.show', $order->id) }}">
+                            {{ $order->due_date->toDateString() }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ route('client.show', $order->client->id) }}">
+                            {{ $order->client->name }}
+                        </a>
+                    </td>
+                    <td class="hidden-xs">{{ $order->statusName }}</td>
+                    <td class="hidden-xs">{{ $order->orderProducts->sum(function ($op) {return $op->sum;}) }}</td>
+                </tr>
+            @endforeach
+                </tbody>
+            </table>
 
             <h3>TODO Features</h3>
             <h4>Users</h4>

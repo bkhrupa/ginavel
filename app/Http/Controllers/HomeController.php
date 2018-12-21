@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,6 +14,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $ordersList = Order::query()
+            ->whereIn('status', [Order::STATUS_NEW, Order::STATUS_IN_PROGRESS])
+            ->with('client')
+            ->orderByDesc('due_date')
+            ->get();
+
+        return view('home', ['ordersList' => $ordersList]);
     }
 }
