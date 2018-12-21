@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\User\CreateRequest;
+use App\Http\Requests\User\UpdateRequest;
+use App\Models\Client;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -65,25 +66,42 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        return redirect(route('user.index'))
-            ->with(['error' => 'Not implemented ;)']);
+        $user->load('client');
+
+        return view('users.edit', ['user' => $user]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param UpdateRequest $request
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, User $user)
     {
-        //
+        $data = $request->except(['_token', '_method', 'client_id', 'password']);
+
+        if ($request->get('password')) {
+            $data['password'] = bcrypt($request->get('password'));
+        }
+
+        $user->update($data);
+
+        Client::query()->where('user_id', $user->id)
+            ->update(['user_id' => null]);
+
+        Client::query()
+            ->findOrFail($request->get('client_id'))
+            ->update(['user_id' => $user->id]);
+
+        return redirect(route('user.show', $user->id))
+            ->with(['status' => 'User successful Updated.']);
     }
 
     /**

@@ -23,6 +23,7 @@ class Client extends BaseModel
         'email',
         'phone',
         'note',
+        'user_id',
     ];
 
     public $sortable = [
