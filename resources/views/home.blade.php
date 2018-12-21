@@ -19,7 +19,8 @@
                 <li>
                     <del>base crud</del>
                 </li>
-                <li>prices history</li>
+                <li><del>prices history</del></li>
+                <li>prices history - crud</li>
                 <li>photo</li>
                 <li>photos gallery</li>
             </ul>

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Observers\ProductObserver;
+use App\Models\Product\PriceHistory;
 use Illuminate\Database\Eloquent\Builder ;
 use Kyslik\ColumnSortable\Sortable;
 
@@ -9,13 +11,13 @@ use Kyslik\ColumnSortable\Sortable;
  * Class Product
  * @package App\Models
  *
- * @property int id
- * @property string name
- * @property int price
- * @property string description
- * @property \Carbon\Carbon deleted_at
- * @property \Carbon\Carbon created_at
- * @property \Carbon\Carbon updated_at
+ * @property int $id
+ * @property string $name
+ * @property int $price
+ * @property string $description
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property \Illuminate\Support\Collection|\App\Models\Product\PriceHistory[] $price_histories
  *
  * @method static \Illuminate\Database\Eloquent\Builder  enabled()
  */
@@ -51,6 +53,18 @@ class Product extends BaseModel
         'name',
         'price',
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        self::observe(ProductObserver::class);
+    }
+
+    public function priceHistories()
+    {
+        return $this->hasMany(PriceHistory::class);
+    }
 
     public function scopeEnabled(Builder $builder)
     {

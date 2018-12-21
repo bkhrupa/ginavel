@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductCreateRequest;
 use App\Http\Requests\ProductUpdateRequest;
 use App\Models\Product;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -53,7 +52,9 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('products.show', $product);
+        $product->load('priceHistories');
+
+        return view('products.show', ['product' => $product]);
     }
 
     /**

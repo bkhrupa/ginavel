@@ -13,11 +13,11 @@
 
 .table .btn-group {
   white-space: nowrap;
-  .btn {
-    display: inline-block;
-    float: none;
-  }
-  .btn + .btn {
-    margin-left: -5px;
-  }
+}
+.table .btn-group .btn {
+  display: inline-block;
+  float: none;
+}
+.table .btn-group .btn + .btn {
+  margin-left: -5px;
 }
