@@ -32,4 +32,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('product', 'ProductController');
     Route::resource('client', 'ClientController');
     Route::resource('order', 'OrderController');
+    Route::put('order/{order}/status-status', 'OrderController@changeStatus')
+    ->name('order.change-status');
 });

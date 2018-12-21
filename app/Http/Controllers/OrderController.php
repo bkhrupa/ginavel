@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Filters\OrderFilter;
 use App\Http\Requests\Order\CreateRequest;
+use App\Http\Requests\Order\StatusRequest;
 use App\Http\Requests\Order\UpdateRequest;
 use App\Models\Order;
 use App\Models\OrderProduct;
@@ -156,5 +157,18 @@ class OrderController extends Controller
 
         return redirect(route('order.index'))
             ->with(['status' => 'Order successful deleted.']);
+    }
+
+    /**
+     * @param \App\Models\Order $order
+     * @param StatusRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function changeStatus(Order $order, StatusRequest $request)
+    {
+        $order->update($request->only(['status']));
+
+        return redirect(route('order.show', $order->id))
+            ->with(['status' => 'Order Status successful updated.']);
     }
 }

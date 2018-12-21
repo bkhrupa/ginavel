@@ -5,6 +5,8 @@
         <div class="panel-heading">Dashboard</div>
 
         <div class="panel-body">
+
+
             <h3>TODO Features</h3>
             <h4>Users</h4>
                 <ul>
@@ -39,7 +41,7 @@
             <h4>Orders</h4>
                 <ul>
                     <li><del>base crud</del></li>
-                    <li>statuses - new, in progress, delivered, wait payment, done</li>
+                    <li><del>statuses - new, in progress, delivered, wait payment, done</del></li>
                     <li>orders log by products</li>
                 </ul>
 

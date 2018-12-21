@@ -6,57 +6,73 @@
         <div class="panel-heading">Oreder #{{ $order->id }}</div>
 
         <div class="panel-body">
-            <div class="row">
-                <div class="col-md-4">#</div>
-                <div class="col-md-6">{{ $order->id }}</div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">Due Date</div>
-                <div class="col-md-6">
-                    {{ $order->due_date->toDateString() }}
-                    @if($order->status !== \App\Models\Order::STATUS_DONE)
-                        @if($order->due_date->lessThan(\Carbon\Carbon::now()))
-                            <i class="fa fa-exclamation text-danger"></i>
-                        @endif
-                    @endif
+            @component('components.show-row', ['label' => '#'])
+                {{ $order->id }}
+            @endcomponent
 
+            @component('components.show-row', ['label' => 'Due Date'])
+                {{ $order->due_date->toDateString() }}
+                @if($order->status !== \App\Models\Order::STATUS_DONE)
+                    @if($order->due_date->lessThan(\Carbon\Carbon::now()))
+                        <i class="fa fa-exclamation text-danger"></i>
+                    @endif
+                @endif
+            @endcomponent
+
+            @component('components.show-row', ['label' => 'Client'])
+                <a href="{{ route('client.show', $order->client->id) }}">
+                    {{ $order->client->name }}
+                </a>
+            @endcomponent
+
+            @component('components.show-row', ['label' => 'Status'])
+                {{ $order->statusName }}
+            @endcomponent
+
+            @component('components.show-row', ['label' => 'Sum'])
+                {{ $order->orderProducts->sum(function ($op) {return $op->sum;}) }}
+            @endcomponent
+
+            @component('components.show-row', ['label' => 'Note'])
+                {{ $order->note }}
+            @endcomponent
+
+            @component('components.show-row', ['label' => 'Created At'])
+                {{ $order->created_at }}
+            @endcomponent
+
+            @component('components.show-row', ['label' => 'Updated At'])
+                {{ $order->updated_at }}
+            @endcomponent
+
+            @component('components.show-row', ['label' => 'Created By'])
+                <a href="{{ route('user.show', $order->creator->id) }}">
+                    {{ $order->creator->name }}
+                </a>
+            @endcomponent
+            <div class="row">
+                <div class="col-md-12">
+                    <form class="form-horizontal" method="POST" action="{{ route('order.change-status', $order->id) }}">
+                        {{ csrf_field() }}
+                        <input name="_method" type="hidden" value="PUT">
+                        @include(
+                                       'partials.form.select',
+                                       [
+                                           'name' => 'status',
+                                           'label' => 'Status',
+                                           'value' => $order->status,
+                                           'options' => App\Models\Order::$statuses
+                                       ]
+                                       )
+                        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Change Status
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">Client</div>
-                <div class="col-md-6">
-                    <a href="{{ route('client.show', $order->client->id) }}">
-                        {{ $order->client->name }}
-                    </a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">Status</div>
-                <div class="col-md-6">{{ $order->statusName }}</div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">Sum</div>
-                <div class="col-md-6">
-                    {{ $order->orderProducts->sum(function ($op) {return $op->sum;}) }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">Nore</div>
-                <div class="col-md-6">
-                    {{ $order->note }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">Created At</div>
-                <div class="col-md-6">{{ $order->created_at }}</div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">Updated At</div>
-                <div class="col-md-6">{{ $order->updated_at }}</div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">Created By</div>
-                <div class="col-md-6">{{ $order->creator->name }}</div>
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -90,7 +106,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <a class="btn btn-default" href="{{ route('order.index') }}">
-                        Back
+                        Orders
                     </a>
                     <a class="btn btn-default" href="{{ route('order.edit', $order->id) }}">
                         Edit
