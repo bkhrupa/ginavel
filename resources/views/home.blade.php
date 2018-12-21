@@ -13,13 +13,11 @@
                     <th>Id</th>
                     <th>Due Date</th>
                     <th>Client</th>
-                    <th class="hidden-xs">Status</th>
-                    <th class="hidden-xs">Sum</th>
                 </tr>
                 </thead>
                 <tbody>
             @foreach ($ordersList as $order)
-                <tr>
+                <tr rowspan="2">
                     <td>
                         <a href="{{ route('order.show', $order->id) }}">
                             {{ $order->id }}
@@ -35,8 +33,17 @@
                             {{ $order->client->name }}
                         </a>
                     </td>
-                    <td class="hidden-xs">{{ $order->statusName }}</td>
-                    <td class="hidden-xs">{{ $order->orderProducts->sum(function ($op) {return $op->sum;}) }}</td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        @foreach($order->orderProducts as $orderProduct)
+                            {{ $orderProduct->product->name }}
+                            <span class="badge badge-default">
+                                {{ $orderProduct->quantity }}
+                            </span>
+                            |
+                        @endforeach
+                    </td>
                 </tr>
             @endforeach
                 </tbody>

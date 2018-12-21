@@ -16,7 +16,7 @@ class HomeController extends Controller
     {
         $ordersList = Order::query()
             ->whereIn('status', [Order::STATUS_NEW, Order::STATUS_IN_PROGRESS])
-            ->with('client')
+            ->with(['client', 'orderProducts', 'orderProducts.product'])
             ->orderByDesc('due_date')
             ->get();
 
