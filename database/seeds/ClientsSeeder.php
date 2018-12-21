@@ -12,18 +12,19 @@ class ClientsSeeder extends Seeder
      */
     public function run()
     {
-        $products = [
+        $clients = [
             [
                 'name' => 'Богдан Хрупа',
                 'phone' => '+380630000001'
             ],
         ];
 
-        foreach ($products as $product) {
-            factory(Client::class)->create($product);
-
+        foreach ($clients as $client) {
+            Client::query()->firstOrCreate($client);
         }
 
-        factory(Client::class)->times(20)->create();
+        if (!app()->environment('production')) {
+            factory(Client::class)->times(20)->create();
+        }
     }
 }
