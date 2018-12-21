@@ -115,7 +115,7 @@ class OrderController extends Controller
             ['created_by' => $request->user()->id]
         );
 
-        $order::query()->update($orderData);
+        $order->update($orderData);
 
         foreach ($request->get('products') as $orderProductData) {
             $product = Product::query()->find($orderProductData['id']);
