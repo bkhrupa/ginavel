@@ -33,9 +33,9 @@ class User extends BaseModel implements
     const ROLE_USER = 'user';
 
     static public $roles = [
-        self::ROLE_ADMIN,
-        self::ROLE_MANAGER,
-        self::ROLE_USER,
+        self::ROLE_ADMIN => self::ROLE_ADMIN,
+        self::ROLE_MANAGER => self::ROLE_MANAGER,
+        self::ROLE_USER => self::ROLE_USER,
     ];
 
     /**

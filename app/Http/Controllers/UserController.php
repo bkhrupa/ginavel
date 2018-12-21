@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\CreateRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -26,20 +27,26 @@ class UserController extends Controller
      */
     public function create()
     {
-        return redirect(route('user.index'))
-            ->with(['error' => 'Not implemented ;)']);
+        return view('users.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param CreateRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateRequest $request)
     {
+        User::query()->create([
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+            'role' => $request->get('role'),
+            'password' => bcrypt($request->get('password')),
+        ]);
+
         return redirect(route('user.index'))
-            ->with(['error' => 'Not implemented ;)']);
+            ->with(['status' => 'User successful created.']);
     }
 
     /**
