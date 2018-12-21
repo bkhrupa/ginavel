@@ -61,8 +61,12 @@ class User extends BaseModel implements
     ];
 
     public $sortable = [
-        'id',
         'name',
         'role',
     ];
+
+    public function client()
+    {
+        return $this->hasOne(Client::class);
+    }
 }
