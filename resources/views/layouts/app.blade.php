@@ -41,9 +41,6 @@
                         <li><a href="{{ route('order.index') }}">Orders</a></li>
                         <li><a href="{{ route('product.index') }}">Products</a></li>
                         <li><a href="{{ route('client.index') }}">Clients</a></li>
-                        @can('admin')
-                            <li><a href="{{ route('user.index') }}">Users</a></li>
-                        @endcan
                     </ul>
             @endauth
 
@@ -61,12 +58,27 @@
                             </a>
 
                             <ul class="dropdown-menu">
+                                <li class="disabled"><a href="#">Profile</a></li>
+
+                                <li class="divider"></li>
+
+                                @can('admin')
+                                    <li class="dropdown-header">Admin @sysinfo</li>
+                                    <li><a href="{{ route('user.index') }}">Users</a></li>
+                                    <li class="dropdown-header"></li>
+                                    <li class="divider"></li>
+                                @endcan
+
                                 <li>
                                     <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         Logout
                                     </a>
+                                    <div class="dropdown-divider"></div>
+                                    <div class="dropdown-item"></div>
+
+                                    <div class="dropdown-divider"></div>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                           style="display: none;">

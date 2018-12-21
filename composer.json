@@ -1,5 +1,6 @@
 {
     "name": "bkhrupa/ginery",
+    "version": "1.0.0-rc",
     "description": "",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
