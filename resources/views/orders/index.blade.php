@@ -10,13 +10,13 @@
                     'order.index',
                      ['filter-status=i=' . \App\Models\Order::STATUS_NEW . ',' . \App\Models\Order::STATUS_IN_PROGRESS]
                      ) }}" class="btn btn-default btn-danger">
-                    New | In Progres
+                    New  Progress
                 </a>
                 <a href="{{ route(
                     'order.index',
                      ['filter-status=i=' . \App\Models\Order::STATUS_DELIVERED . ',' . \App\Models\Order::STATUS_WAIT_PAYMENT]
                      ) }}" class="btn btn-default btn-info">
-                    Delivered | Wait Payment
+                    Deliver Wait
                 </a>
                 <a href="{{ route('order.index', ['filter-status=' . \App\Models\Order::STATUS_DONE]) }}"
                    class="btn btn-success">
@@ -34,9 +34,10 @@
             <table class="table">
                 <thead>
                 <tr>
+                    <th>@sortablelink('id')</th>
                     <th>@sortablelink('due_date')</th>
                     <th>@sortablelink('client.name', 'client')</th>
-                    <th>@sortablelink('status')</th>
+                    <th class="hidden-xs">@sortablelink('status')</th>
                     <th class="hidden-xs">Sum</th>
                 </tr>
                 </thead>
@@ -62,6 +63,11 @@
                     <tr class="{{ $statusClass }}">
                         <td>
                             <a href="{{ route('order.show', $order->id) }}">
+                                {{ $order->id }}
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ route('order.show', $order->id) }}">
                                 {{ $order->due_date->toDateString() }}
                             </a>
                             @if($order->status !== \App\Models\Order::STATUS_DONE)
@@ -75,7 +81,7 @@
                                 {{ $order->client->name }}
                             </a>
                         </td>
-                        <td>{{ $order->statusName }}</td>
+                        <td class="hidden-xs">{{ $order->statusName }}</td>
                         <td class="hidden-xs">{{ $order->orderProducts->sum(function ($op) {return $op->sum;}) }}</td>
                     </tr>
                 @endforeach
