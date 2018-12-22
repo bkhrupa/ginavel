@@ -5,6 +5,7 @@ namespace App\Http\Requests\Client;
 use App\Models\Product;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use LVR\Phone\E164;
 
 class CreateRequest extends FormRequest
 {
@@ -29,11 +30,13 @@ class CreateRequest extends FormRequest
             'name' => [
                 'required',
                 'max:191',
-                'unique:clients,name'
+                Rule::unique('clients', 'name'),
             ],
-            // TODO phone validation
             'phone' => [
-
+                'sometimes',
+                'nullable',
+                'phone_e164',
+                'size:13'
             ],
             'email' => [
                 'sometimes',
@@ -44,5 +47,15 @@ class CreateRequest extends FormRequest
                 'max:2048'
             ],
         ];
+    }
+
+    public function messages()
+    {
+        return array_merge(
+            [
+                'phone.E164' => 'The client field is required.'
+            ],
+            parent::messages()
+        );
     }
 }

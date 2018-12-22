@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "709d2c24885cf8be63fe924f9249dd64",
+    "content-hash": "720c4bb5f79e01826e8575d5449104c6",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -526,6 +526,55 @@
                 "query-strings"
             ],
             "time": "2018-10-01T16:48:48+00:00"
+        },
+        {
+            "name": "laravel-validation-rules/phone",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel-validation-rules/phone.git",
+                "reference": "786d7aaeaeb79fc5a423c678d8a094fe4a11678d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel-validation-rules/phone/zipball/786d7aaeaeb79fc5a423c678d8a094fe4a11678d",
+                "reference": "786d7aaeaeb79fc5a423c678d8a094fe4a11678d",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^5.5",
+                "illuminate/support": "^5.5",
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^3.5",
+                "phpunit/phpunit": "^6.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "LVR\\Phone\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Tyler Arbon",
+                    "email": "tylercd100@gmail.com"
+                }
+            ],
+            "description": "Validate that a phone number is in the correct format",
+            "homepage": "https://github.com/laravel-validation-rules/phone",
+            "keywords": [
+                "laravel",
+                "phone",
+                "tylercd100",
+                "validator"
+            ],
+            "time": "2018-10-19T18:15:36+00:00"
         },
         {
             "name": "laravel/framework",

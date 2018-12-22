@@ -33,9 +33,11 @@ class UpdateRequest extends FormRequest
                 'max:191',
                 Rule::unique('clients', 'name')->ignore($client->id),
             ],
-            // TODO phone validation
             'phone' => [
-
+                'sometimes',
+                'nullable',
+                'phone_e164',
+                'size:13'
             ],
             'email' => [
                 'sometimes',
