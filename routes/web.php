@@ -34,11 +34,18 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('product', 'ProductController');
     Route::resource('client', 'ClientController');
     Route::resource('order', 'OrderController');
-    Route::put('order/{order}/status-status', 'OrderController@changeStatus')
+    Route::put('order/{order}/change-status', 'OrderController@changeStatus')
         ->name('order.change-status');
 });
 
 Route::group(['as' => 'page.', 'prefix' => 'page'], function () {
     Route::get('products', 'PageController@products')
         ->name('products');
+});
+
+Route::group(['as' => 'statistic.', 'prefix' => 'statistic', 'namespace' => 'Statistic'], function () {
+    Route::group(['as' => 'client.', 'prefix' => 'client'], function () {
+        Route::get('/', 'ClientController@index')
+            ->name('index');
+    });
 });

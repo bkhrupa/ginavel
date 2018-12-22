@@ -26,6 +26,8 @@ class Client extends BaseModel
         'user_id',
     ];
 
+    protected $sortableAs = ['orders_count'];
+
     public $sortable = [
         'name',
     ];

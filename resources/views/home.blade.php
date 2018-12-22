@@ -59,7 +59,10 @@
 
             <h4>Statistics</h4>
             <ul>summary</ul>
-            <ul>by customer</ul>
+            <ul>
+                by customer
+                (<del>base orders count and last order</del>
+            </ul>
             <ul>by products</ul>
 
             <h4>Pages
