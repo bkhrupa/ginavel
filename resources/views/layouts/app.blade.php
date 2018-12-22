@@ -58,7 +58,7 @@
                             </a>
 
                             <ul class="dropdown-menu">
-                                <li class="disabled"><a href="#">Profile</a></li>
+                                <li><a href="{{ route('profile.show', Auth::user()->id) }}">Profile</a></li>
 
                                 <li class="divider"></li>
 

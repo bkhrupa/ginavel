@@ -1,5 +1,5 @@
 <div class="form-group{{ $errors->has($name) ? ' has-error' : '' }}">
-    <label for="name" class="col-md-2 control-label">{{ $label }}</label>
+    <label for="name" class="col-md-3 control-label">{{ $label }}</label>
 
     <div class="col-md-8">
         <select id="{{ $name }}" class="form-control" name="{{ $name }}">

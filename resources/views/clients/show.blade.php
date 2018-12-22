@@ -5,34 +5,35 @@
         <div class="panel-heading">Client - {{ $name }}</div>
 
         <div class="panel-body">
-            <div class="row">
-                <div class="col-md-4">Name</div>
-                <div class="col-md-6">{{ $name }}</div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">Email</div>
-                <div class="col-md-6">{{ $email }}</div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">Phone</div>
-                <div class="col-md-6">{{ $phone }}</div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">Noet</div>
-                <div class="col-md-6">{{ $note }}</div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">Updated At</div>
-                <div class="col-md-6">{{ $updated_at }}</div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">Created At</div>
-                <div class="col-md-6">{{ $created_at }}</div>
-            </div>
+            @component('components.show-row', ['label' => 'Name'])
+                {{ $name }}
+            @endcomponent
+
+            @component('components.show-row', ['label' => 'Email'])
+                {{ $email }}
+            @endcomponent
+
+            @component('components.show-row', ['label' => 'Phone'])
+                {{ $phone }}
+                <a href="tel:{{ $phone }}"><i class="fa fa-phone"></i></a>
+            @endcomponent
+
+            @component('components.show-row', ['label' => 'Noet'])
+                {{ $note }}
+            @endcomponent
+
+            @component('components.show-row', ['label' => 'Updated At'])
+                {{ $updated_at }}
+            @endcomponent
+
+            @component('components.show-row', ['label' => 'Created At'])
+                {{ $created_at }}
+            @endcomponent
+
             <div class="row">
                 <div class="col-md-12">
-                    <a class="btn btn-link" href="{{ route('client.index') }}">
-                        Back
+                    <a class="btn btn-default" href="{{ route('client.index') }}">
+                        Clients
                     </a>
                 </div>
             </div>

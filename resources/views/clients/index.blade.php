@@ -12,7 +12,6 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th>@sortablelink('id', 'Id')</th>
                     <th>@sortablelink('name')</th>
                     <th>Phone</th>
                     <th>Actions</th>
@@ -21,28 +20,14 @@
                 <tbody>
                 @foreach ($clients as $client)
                     <tr>
-                        <td>{{ $client->id }}</td>
-                        <td>{{ $client->name }}</td>
+                        <td><a href="{{ route('client.show', $client->id) }}">{{ $client->name }}</a></td>
                         <td>
                             @if($client->phone)
-                                {{ $client->phone }}
+                                <span class="hidden-xs">{{ $client->phone }}</span>
                                 <a href="tel:{{ $client->phone }}"><i class="fa fa-phone"></i></a>
                             @endif
                         </td>
-                        <td>
-                            <div class="btn-group">
-                                <a class="btn btn-link" href="{{ route('client.show', $client->id) }}">Show</a>
-                                <a class="btn btn-link" href="{{ route('client.edit', $client->id) }}">Edit</a>
-                                <form method="POST" style="display: inline;"
-                                      action="{{ route('client.destroy', $client->id) }}">
-                                    {{ csrf_field() }}
-                                    <input name="_method" type="hidden" value="DELETE">
-                                    <button type="submit" class="btn btn-link" v-confirm-delete>
-                                        Delete
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
+                        <td>@include('partials.btns-ed', ['model' => $client])</td>
                     </tr>
                 @endforeach
                 </tbody>

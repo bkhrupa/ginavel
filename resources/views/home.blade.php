@@ -53,7 +53,7 @@
             <h4>Users</h4>
                 <ul>
                     <li><del>auth</del></li>
-                    <li>base crud</li>
+                    <li><del>base crud</del></li>
                     <li>roles</li>
                     <li>policies access</li>
                 </ul>

@@ -6,30 +6,30 @@
         <div class="panel-heading">{{ $product->name }}</div>
 
         <div class="panel-body">
-            <div class="row">
-                <div class="col-md-4">Name</div>
-                <div class="col-md-6">{{ $product->name }}</div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">Price</div>
-                <div class="col-md-6">{{ $product->price }}</div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">Description</div>
-                <div class="col-md-6">{{ $product->description }}</div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">Status</div>
-                <div class="col-md-6">{{ App\Models\Product::$statuses[$product->status] }}</div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">Updated At</div>
-                <div class="col-md-6">{{ $product->updated_at }}</div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">Created At</div>
-                <div class="col-md-6">{{ $product->created_at }}</div>
-            </div>
+            @component('components.show-row', ['label' => 'Name'])
+                {{ $product->name }}
+            @endcomponent
+
+            @component('components.show-row', ['label' => 'Price'])
+                {{ $product->price }}
+            @endcomponent
+
+            @component('components.show-row', ['label' => 'Description'])
+                {{ $product->description }}
+            @endcomponent
+
+            @component('components.show-row', ['label' => 'Status'])
+                {{ App\Models\Product::$statuses[$product->status] }}
+            @endcomponent
+
+            @component('components.show-row', ['label' => 'Updated At'])
+                {{ $product->updated_at }}
+            @endcomponent
+
+            @component('components.show-row', ['label' => 'Created At'])
+                {{ $product->created_at }}
+            @endcomponent
+
             @if ($product->priceHistories->isNotEmpty())
                 <div class="row">
                     <div class="col-md-12">
@@ -55,8 +55,8 @@
             @endif
             <div class="row">
                 <div class="col-md-12">
-                    <a class="btn btn-link" href="{{ route('product.index') }}">
-                        Back
+                    <a class="btn btn-default" href="{{ route('product.index') }}">
+                        Products
                     </a>
                 </div>
             </div>

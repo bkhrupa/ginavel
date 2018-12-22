@@ -12,9 +12,7 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>@sortablelink('id')</th>
                         <th>@sortablelink('name')</th>
-                        <th>Email</th>
                         <th>@sortablelink('role')</th>
                         <th>Actions</th>
                     </tr>
@@ -22,13 +20,11 @@
                     <tbody>
                     @foreach ($users as $user)
                         <tr>
-                            <td>{{ $user->id }}</td>
                             <td>
                                 <a title="Show" href="{{ route('user.show', $user->id) }}">
                                     {{ $user->name }}
                                 </a>
                             </td>
-                            <td>{{ $user->email }}</td>
                             <td>{{ $user->role }}</td>
                             <td>@include('partials.btns-ed', ['model' => $user])</td>
                         </tr>

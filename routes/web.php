@@ -29,9 +29,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('user', 'UserController');
     });
 
+    Route::resource('profile', 'ProfileController')
+        ->only('show');
     Route::resource('product', 'ProductController');
     Route::resource('client', 'ClientController');
     Route::resource('order', 'OrderController');
     Route::put('order/{order}/status-status', 'OrderController@changeStatus')
-    ->name('order.change-status');
+        ->name('order.change-status');
 });

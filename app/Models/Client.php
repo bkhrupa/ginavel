@@ -27,7 +27,6 @@ class Client extends BaseModel
     ];
 
     public $sortable = [
-        'id',
         'name',
     ];
 

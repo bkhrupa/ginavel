@@ -7,9 +7,9 @@
 @endphp
 
 <div class="form-group{{ $hasError ? ' has-error' : '' }}">
-    <label for="name" class="col-md-4 control-label">{{ $label }} ({{ $price }})</label>
+    <label for="name" class="col-md-3 control-label">{{ $label }} ({{ $price }})</label>
 
-    <div class="col-md-6">
+    <div class="col-md-8">
         <input type="number" step="0.1" min="0" class="form-control" name="products[{{ $id }}][quantity]" value="{{ old('products.' . $id . '.quantity', $value) }}">
         <input type="hidden" name="products[{{ $id }}][id]" value="{{ $id }}">
 
