@@ -37,3 +37,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('order/{order}/status-status', 'OrderController@changeStatus')
         ->name('order.change-status');
 });
+
+Route::group(['as' => 'page.', 'prefix' => 'page'], function () {
+    Route::get('products', 'PageController@products')
+        ->name('products');
+});

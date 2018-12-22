@@ -41,6 +41,14 @@
                         <li><a href="{{ route('order.index') }}">Orders</a></li>
                         <li><a href="{{ route('product.index') }}">Products</a></li>
                         <li><a href="{{ route('client.index') }}">Clients</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <span
+                                        class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li class="dropdown-header">Public access</li>
+                                <li><a href="{{ route('page.products') }}">Products</a></li>
+                            </ul>
+                        </li>
                     </ul>
             @endauth
 

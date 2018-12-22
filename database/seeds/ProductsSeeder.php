@@ -71,7 +71,7 @@ class ProductsSeeder extends Seeder
                     ['price' => 160, 'updated_at' => '2018-10-05', 'created_at' => '2018-10-05'],
                 ],
             ], [
-                'name' => 'Хренівка *',
+                'name' => 'Хренівка',
                 'price' => 160,
                 'description' => null,
                 'price_histories' => [
