@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Products;
+namespace Tests\Feature\Product;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -11,11 +11,16 @@ class IndexTest extends TestCase {
 
     use RefreshDatabase;
 
+    protected function setUp()
+    {
+        parent::setUp();
+
+        $this->seed();
+        $this->actingAs(User::query()->findOrFail(1));
+    }
+
     public function testStatus200()
     {
-        $this->seed();
-
-        $this->actingAs(User::query()->findOrFail(1));
         $response = $this->get('/product');
 
         $response->assertStatus(200);
@@ -24,9 +29,6 @@ class IndexTest extends TestCase {
 
     public function testProductsList()
     {
-        $this->seed();
-
-        $this->actingAs(User::query()->findOrFail(1));
         $response = $this->get('/product');
 
         $response->assertSeeText('New Product');

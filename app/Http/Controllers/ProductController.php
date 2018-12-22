@@ -92,9 +92,9 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        $product->delete();
+//        $product->delete();
 
         return redirect(route('product.index'))
-            ->with(['status' => 'Product successful deleted.']);
+            ->with(['status' => 'TODO delete product.']);
     }
 }
