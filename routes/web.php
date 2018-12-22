@@ -36,16 +36,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('order', 'OrderController');
     Route::put('order/{order}/change-status', 'OrderController@changeStatus')
         ->name('order.change-status');
-});
+
+    Route::group(['as' => 'statistic.', 'prefix' => 'statistic', 'namespace' => 'Statistic'], function () {
+        Route::group(['as' => 'client.', 'prefix' => 'client'], function () {
+            Route::get('/', 'ClientController@index')
+                ->name('index');
+        });
+    });
+}); // middleware => auth
 
 Route::group(['as' => 'page.', 'prefix' => 'page'], function () {
     Route::get('products', 'PageController@products')
         ->name('products');
-});
-
-Route::group(['as' => 'statistic.', 'prefix' => 'statistic', 'namespace' => 'Statistic'], function () {
-    Route::group(['as' => 'client.', 'prefix' => 'client'], function () {
-        Route::get('/', 'ClientController@index')
-            ->name('index');
-    });
 });
