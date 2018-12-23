@@ -16,7 +16,7 @@ class IndexTest extends TestCase {
         parent::setUp();
 
         $this->seed();
-        $this->actingAs(User::query()->findOrFail(1));
+        $this->iAmAdmin();
     }
 
     public function testStatus200()

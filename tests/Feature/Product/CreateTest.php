@@ -21,7 +21,7 @@ class CreateTest extends TestCase
     {
         $data = [
             'name' => 'Foo',
-            'price' => 100,
+            'price' => 113,
             'description' => 'Foo description',
             'status' => Product::STATUS_ENABLED,
         ];
@@ -31,6 +31,7 @@ class CreateTest extends TestCase
         $response->assertStatus(302);
         $response->assertSessionHas('status');
         $this->assertDatabaseHas('products', $data);
+        $this->assertDatabaseHas('price_histories', ['price' => 113]);
     }
 
     public function testRequestErrors()
