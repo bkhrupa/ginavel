@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Observers\ProductObserver;
 use App\Models\Product\PriceHistory;
 use Illuminate\Database\Eloquent\Builder ;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Kyslik\ColumnSortable\Sortable;
 
 /**
@@ -23,7 +24,7 @@ use Kyslik\ColumnSortable\Sortable;
  */
 class Product extends BaseModel
 {
-    use Sortable;
+    use SoftDeletes, Sortable;
 
     const STATUS_DISABLE = 0;
     const STATUS_ENABLED = 1;

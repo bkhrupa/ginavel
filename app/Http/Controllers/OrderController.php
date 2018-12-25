@@ -83,7 +83,13 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        $order = $order->load(['creator', 'client', 'orderProducts', 'orderProducts.product']);
+        $order = $order->load([
+            'creator',
+            'client',
+            'orderProducts',
+            'orderProducts.product' => function($builder) {
+                $builder->withTrashed();
+            }]);
 
         return view('orders.show', ['order' => $order]);
     }

@@ -11,7 +11,7 @@ class OrdersSeeder extends Seeder
     {
         if (!app()->environment('production')) {
             factory(Order::class)
-                ->times(5)
+                ->times(16)
                 ->create()
                 ->each(function ($order) {
                     $order->orderProducts()->saveMany(factory(OrderProduct::class)->times(rand(1, 3))->make());
