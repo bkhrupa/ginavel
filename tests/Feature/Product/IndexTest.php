@@ -31,7 +31,7 @@ class IndexTest extends TestCase {
     {
         $response = $this->get('/product');
 
-        $response->assertSeeText('New Product');
+        $response->assertSeeText(__('product.new_product'));
         $response->assertSeeText('Absinthe');
         $response->assertViewIs('products.index');
     }

@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Product;
 
+use App\Models\Product;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -20,10 +21,16 @@ class DestroyTest extends TestCase
 
     public function testSuccessfulDelete()
     {
-        // TODO @test
-        $response = $this->delete(route('product.destroy', 1));
+        /** @var Product $product */
+        $product = Product::query()->first();
+
+        $response = $this->delete(route('product.destroy', $product->id));
+
+        $product->refresh();
 
         $response->assertStatus(302);
         $response->assertSessionHas('status');
+        $this->assertDatabaseHas('products', $product->toArray());
+        $this->assertNotNull($product->deleted_at);
     }
 }

@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="panel panel-default">
-        <div class="panel-heading">Products</div>
+        <div class="panel-heading">@lang('product.products')</div>
 
         <div class="panel-body">
             <div class="btn-group">
-                <a href="{{ route('product.create') }}" class="btn btn-default">New Product</a>
+                    <a href="{{ route('product.create') }}" class="btn btn-default">@lang('product.new_product')</a>
             </div>
 
             <table class="table">

@@ -16,8 +16,10 @@ use Kyslik\ColumnSortable\Sortable;
  * @property string $name
  * @property int $price
  * @property string $description
+ * @property int $status
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property \Carbon\Carbon $deleted_at
  * @property \Illuminate\Support\Collection|\App\Models\Product\PriceHistory[] $price_histories
  *
  * @method static \Illuminate\Database\Eloquent\Builder  enabled()

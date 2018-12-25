@@ -5,28 +5,30 @@
         <div class="panel-heading">Client - {{ $name }}</div>
 
         <div class="panel-body">
-            @component('components.show-row', ['label' => 'Name'])
+            @component('components.show-row', ['label' => __('form.name')])
                 {{ $name }}
             @endcomponent
 
-            @component('components.show-row', ['label' => 'Email'])
+            @component('components.show-row', ['label' => __('form.email')])
                 {{ $email }}
             @endcomponent
 
-            @component('components.show-row', ['label' => 'Phone'])
+            @component('components.show-row', ['label' => __('form.email')])
                 {{ $phone }}
-                <a href="tel:{{ $phone }}"><i class="fa fa-phone"></i></a>
+                @if($phone)
+                    <a href="tel:{{ $phone }}"><i class="fa fa-phone"></i></a>
+                @endif
             @endcomponent
 
-            @component('components.show-row', ['label' => 'Noet'])
+            @component('components.show-row', ['label' => __('form.note')])
                 {{ $note }}
             @endcomponent
 
-            @component('components.show-row', ['label' => 'Updated At'])
+            @component('components.show-row', ['label' => __('form.updated_at')])
                 {{ $updated_at }}
             @endcomponent
 
-            @component('components.show-row', ['label' => 'Created At'])
+            @component('components.show-row', ['label' => __('form.created_at')])
                 {{ $created_at }}
             @endcomponent
 
