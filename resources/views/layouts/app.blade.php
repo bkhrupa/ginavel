@@ -80,6 +80,7 @@
                                 @can('admin')
                                     <li class="dropdown-header">Admin @sysinfo</li>
                                     <li><a href="{{ route('user.index') }}">Users</a></li>
+                                    <li><a href="{{ route('todo') }}">ToDo ;)</a></li>
                                     <li class="dropdown-header"></li>
                                     <li class="divider"></li>
                                 @endcan

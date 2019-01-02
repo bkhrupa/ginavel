@@ -1,4 +1,14 @@
 <h4>Orders (New, In Progress)</h4>
+@if (!empty($productOrdersSum))
+    <h5>Sum for this page:</h5>
+    @foreach ($productOrdersSum as $productName => $quantity)
+        {{ $productName }}
+        <span class="badge badge-default">
+                        {{ $quantity }}
+                    </span>
+    @endforeach
+@endif
+
 <table class="table">
     <thead>
     <tr>

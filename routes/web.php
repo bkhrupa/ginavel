@@ -43,6 +43,11 @@ Route::group(['middleware' => 'auth'], function () {
                 ->name('index');
         });
     });
+
+    Route::get('todo', function () {
+        return view('todo');
+    })->name('todo');
+
 }); // middleware => auth
 
 Route::group(['as' => 'page.', 'prefix' => 'page'], function () {

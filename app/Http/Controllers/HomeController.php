@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use Illuminate\Http\Request;
+use function PHPSTORM_META\elementType;
 
 class HomeController extends Controller
 {
@@ -19,13 +19,26 @@ class HomeController extends Controller
             ->with([
                 'client',
                 'orderProducts',
-                'orderProducts.product' => function($builder) {
+                'orderProducts.product' => function ($builder) {
                     $builder->withTrashed();
                 }
             ])
             ->sortable()
             ->paginate();
 
-        return view('home', ['ordersList' => $ordersList]);
+        $productOrdersSum = [];
+
+        $ordersList->each(function ($order) use (&$productOrdersSum) {
+            foreach ($order->orderProducts as $orderProduct) {
+                if (!isset($productOrdersSum[$orderProduct->product->name])) {
+                    $productOrdersSum[$orderProduct->product->name] = $orderProduct->quantity;
+                }
+                else {
+                    $productOrdersSum[$orderProduct->product->name] += $orderProduct->quantity;
+                }
+            }
+        });
+
+        return view('home', ['ordersList' => $ordersList, 'productOrdersSum' => $productOrdersSum]);
     }
 }
