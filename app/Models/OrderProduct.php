@@ -14,7 +14,7 @@ class OrderProduct extends BaseModel
     ];
 
     protected $casts = [
-        'quantity' => 'int',
+        'quantity' => 'float',
         'price' => 'int',
         'sum' => 'int',
     ];

@@ -23,7 +23,7 @@ class OrderController extends Controller
         $orders = Order::query()
             ->with(['client', 'orderProducts'])
             ->filter($filter)
-            ->sortable()
+            ->sortable(['due_date' => 'desc'])
             ->paginate();
 
         return view('orders.index', ['orders' => $orders]);
