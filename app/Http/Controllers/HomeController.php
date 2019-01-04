@@ -56,12 +56,14 @@ class HomeController extends Controller
             array_merge([null], collect($pos)->pluck('quantity')->toArray()),
         ];
 
-        foreach ($ol as $order) {
 
+        foreach ($ol as $order) {
             $fff = [$order];
-            foreach ($a[0] as $productId => $productOrderSumData) {
-                if ($productId) {
-                    $clientOrderQuantity = optional($order->orderProducts->firstWhere('product_id', $productId))->quantity;
+            foreach ($a[0] as $productOrderSumData) {
+                if ($productOrderSumData) {
+                    $data = optional($order->orderProducts->firstWhere('product_id', $productOrderSumData['id']));
+
+                    $clientOrderQuantity = $data->quantity;
                     array_push($fff, $clientOrderQuantity);
                 }
             }
