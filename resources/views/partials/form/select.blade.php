@@ -1,8 +1,8 @@
-<div class="form-group{{ $errors->has($name) ? ' has-error' : '' }}">
-    <label for="name" class="col-md-3 control-label">{{ $label }}</label>
+<div class="form-group row">
+    <label class="col-sm-3 col-form-label">{{ $label }}</label>
 
-    <div class="col-md-8">
-        <select id="{{ $name }}" class="form-control" name="{{ $name }}">
+    <div class="col-sm-8">
+        <select class="custom-select {{ $errors->has($name) ? 'is-invalid' : '' }}" name="{{ $name }}">
             @foreach($options as $optionKey => $optionValue)
                 @php($selected = '')
 
@@ -15,9 +15,11 @@
         </select>
 
         @if ($errors->has($name))
-            <span class="help-block">
-            <strong>{{ $errors->first($name) }}</strong>
-            </span>
+            <div class="invalid-feedback">
+                {{ $errors->first($name) }}
+            </div>
         @endif
     </div>
+
 </div>
+

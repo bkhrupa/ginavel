@@ -5,8 +5,8 @@
     @component('components.card', ['header' => 'Edit User - ' . $user->name])
 
         <form class="form-horizontal" method="POST" action="{{ route('user.update', $user->id) }}">
-            {{ csrf_field() }}
-            <input name="_method" type="hidden" value="PUT">
+            @csrf
+            @method('PUT')
 
             @include('partials.form.text', ['name' => 'name', 'label' => 'User Name', 'value' => $user->name])
 
@@ -36,17 +36,13 @@
             ]
             )
 
-            <div class="form-group">
-                <div class="col-md-8 col-md-offset-4">
-                    <button type="submit" class="btn btn-primary">
-                        Update
-                    </button>
+            <button type="submit" class="btn btn-primary">
+                Update
+            </button>
 
-                    <a class="btn btn-link" href="{{ route('product.index') }}">
-                        Cancel
-                    </a>
-                </div>
-            </div>
+            <a class="btn btn-link" href="{{ route('user.index') }}">
+                Cancel
+            </a>
         </form>
 
     @endcomponent

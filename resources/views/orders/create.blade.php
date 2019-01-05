@@ -27,12 +27,12 @@
             <h4 class="text-center">Enter products quantity</h4>
 
             @if ($errors->has('products'))
-                <div class="form-group{{ $errors->has('products') ? ' has-error' : '' }}">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-6">
-                        <span class="help-block">
-                            <strong>{{ $errors->first('products') }}</strong>
-                        </span>
+                <div class="form-group row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-8">
+                        <div class="invalid-feedback d-block">
+                            {{ $errors->first('products') }}
+                        </div>
                     </div>
                 </div>
             @endif
@@ -49,17 +49,12 @@
                  )
             @endforeach
 
-            <div class="form-group">
-                <div class="col-md-8 col-md-offset-4">
-                    <button type="submit" class="btn btn-primary">
-                        Create
-                    </button>
-
-                    <a class="btn btn-link" href="{{ route('product.index') }}">
-                        Cancel
-                    </a>
-                </div>
-            </div>
+            <button type="submit" class="btn btn-primary">
+                Create
+            </button>
+            <a class="btn btn-link" href="{{ route('order.index') }}">
+                Cancel
+            </a>
         </form>
     @endcomponent
 @endsection
