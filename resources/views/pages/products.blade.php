@@ -1,10 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="panel panel-default">
-        <div class="panel-heading">Products</div>
+    @component('components.card', ['header' => 'Products'])
 
-        <div class="panel-body">
             <table class="table">
                 <thead>
                 <tr>
@@ -24,6 +22,5 @@
 
             {!! $products->appends(Request::except('page'))->render() !!}
 
-        </div>
-    </div>
+        @endcomponent
 @endsection

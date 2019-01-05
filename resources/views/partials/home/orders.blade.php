@@ -1,11 +1,11 @@
 <h4>Orders (New, In Progress)</h4>
 
-@if($co)
+@if($customersOrdersTable)
     <div class="table-responsive">
         <table class="table table-bordered table-hover table-condensed">
             <tbody>
 
-            @foreach($co as $key => $row)
+            @foreach($customersOrdersTable as $key => $row)
                 <tr>
                     @foreach($row as $cell)
                         @if($key === 0)

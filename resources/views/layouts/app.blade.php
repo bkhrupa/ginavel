@@ -15,104 +15,100 @@
 </head>
 <body>
 <div id="app">
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
 
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#app-navbar-collapse" aria-expanded="false">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{{ url('/') }}">
+            {{ config('app.name', 'Ginery') }}
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-                <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Ginery') }}
-                </a>
-            </div>
+        @auth
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <a class="btn btn-sm btn-outline-primary" href="{{ route('order.create') }}">New Order</a>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('order.index') }}">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('product.index') }}">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('client.index') }}">Clients</a>
+                    </li>
 
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                @auth
-                    <ul class="nav navbar-nav">
-                        <li><a href="{{ route('order.index') }}">Orders</a></li>
-                        <li><a href="{{ route('product.index') }}">Products</a></li>
-                        <li><a href="{{ route('client.index') }}">Clients</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Statistic <span
-                                        class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ route('statistic.client.index') }}">Clients</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <span
-                                        class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li class="dropdown-header">Public access</li>
-                                <li><a href="{{ route('page.products') }}">Products</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-            @endauth
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Statistic
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('statistic.client.index') }}">Clients</a>
+                        </div>
+                    </li>
 
-            <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Pages
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <h6 class="dropdown-header">Public access</h6>
+                            <a class="dropdown-item" href="{{ route('page.products') }}">Products</a>
+                        </div>
+                    </li>
+                </ul>
+                @endauth
+
+                <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
                     @guest
-                        <li><a href="{{ route('login') }}">Login</a></li>
-                        {{--<li><a href="{{ route('register') }}">Register</a></li>--}}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">Login</a>
+                            {{--<a class="nav-link" href="{{ route('register') }}">Register</a>--}}
+                        </li>
                     @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-expanded="false" aria-haspopup="true" v-pre>
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ Auth::user()->name }}
                             </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown3">
+                                <a class="dropdown-item"
+                                   href="{{ route('profile.show', Auth::user()->id) }}">Profile</a>
 
-                            <ul class="dropdown-menu">
-                                <li><a href="{{ route('profile.show', Auth::user()->id) }}">Profile</a></li>
-
-                                <li class="divider"></li>
 
                                 @can('admin')
-                                    <li class="dropdown-header">Admin @sysinfo</li>
-                                    <li><a href="{{ route('user.index') }}">Users</a></li>
-                                    <li><a href="{{ route('todo') }}">ToDo ;)</a></li>
-                                    <li class="dropdown-header"></li>
-                                    <li class="divider"></li>
+                                    <h6 class="dropdown-header">Admin @sysinfo</h6>
+                                    <a class="dropdown-item" href="{{ route('user.index') }}">Users</a>
+                                    <a class="dropdown-item" href="{{ route('todo') }}">ToDo ;)</a>
                                 @endcan
 
-                                <li>
-                                    <a href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        Logout
-                                    </a>
-                                    <div class="dropdown-divider"></div>
-                                    <div class="dropdown-item"></div>
+                                    Logout
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                      style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
 
-                                    <div class="dropdown-divider"></div>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                          style="display: none;">
-                                        {{ csrf_field() }}
-                                    </form>
-                                </li>
-                            </ul>
+                            </div>
                         </li>
                     @endguest
                 </ul>
             </div>
-        </div>
     </nav>
 
 
+
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+        <div class="row justify-content-md-center">
+            <div class="col-md-8">
 
                 @include('partials.alerts')
                 @yield('content')
