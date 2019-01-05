@@ -24,7 +24,10 @@
                     </td>
                     <td>
                         @if($client->orders->isNotEmpty())
-                            {{ $client->orders->sortBy('updated_at')->first()->updated_at->toDateString() }}
+                            @php
+                                $lastOrder = optional($client->orders->sortBy('updated_at')->firstWhere('status', \App\Models\Order::STATUS_DONE));
+                            @endphp
+                            {{ optional($lastOrder->updated_at)->toDateString() }}
                         @else
                             -
                         @endif

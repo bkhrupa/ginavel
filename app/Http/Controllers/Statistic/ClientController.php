@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Statistic;
 
-use App\Models\Client;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Client;
 
 class ClientController extends Controller
 {
