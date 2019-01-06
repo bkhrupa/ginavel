@@ -15,11 +15,12 @@ use Kyslik\ColumnSortable\Sortable;
  * Class User
  * @package App\Models
  *
- * @property int id
- * @property string name
- * @property string email
- * @property string password
- * @property string role
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property string $password
+ * @property string $role
+ * @property \App\Models\Client|null $client
  */
 class User extends BaseModel implements
     AuthenticatableContract,

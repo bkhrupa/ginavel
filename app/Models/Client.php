@@ -11,8 +11,9 @@ use Kyslik\ColumnSortable\Sortable;
  *
  * @property int $id
  * @property string $name
+ * @property int $user_id
  * @property \Illuminate\Support\Collection|\App\Models\Order[] $orders
- * @property \App\Models\User $user
+ * @property \App\Models\User|null $user
  */
 class Client extends BaseModel
 {
