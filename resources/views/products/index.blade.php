@@ -18,7 +18,7 @@
             </thead>
             <tbody>
             @foreach ($products as $product)
-                <tr {!! ($product->status === \App\Models\Product::STATUS_DISABLE) ? 'class="table-secondary"' : '' !!}>
+                <tr {!! ($product->status == \App\Models\Product::STATUS_DISABLE) ? 'class="table-secondary"' : '' !!}>
                     <td class="d-none d-sm-table-cell">{{ $product->id }}</td>
                     <td>
                         <a title="Show" href="{{ route('product.show', $product->id) }}">
